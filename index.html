@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Pager Tom by paulhorner79</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Pager Tom</h1>
+      <h2 class="project-tagline">This is another Javascript pagination library</h2>
+      <a href="https://github.com/paulhorner79/pager-tom" class="btn">View on GitHub</a>
+      <a href="https://github.com/paulhorner79/pager-tom/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/paulhorner79/pager-tom/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="pager-tom" class="anchor" href="#pager-tom" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Pager Tom</h1>
+
+<p>This is a Javascript pagination library.  There is no reason for the name
+except that it's a pun.</p>
+
+<blockquote>
+<p>This is Ground Control to Pager Tom...</p>
+</blockquote>
+
+<h2>
+<a id="quickstart" class="anchor" href="#quickstart" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Quickstart</h2>
+
+<p>To use this library, put a link to it at the bottom of your page, after your
+JQuery library is loaded.  You can put it in the header if you want, but you
+probably shouldn't because that was what we did in the 90s.</p>
+
+<p>Then place an element on the page where you want the pagination buttons to
+appear.</p>
+
+<pre><code>&lt;div id="paginate"&gt;&lt;/div&gt;
+</code></pre>
+
+<p>Then add a script and invoke the paginate method on the specified element,
+including the bespoke options required.  </p>
+
+<p>You can call API methods on the pagination object.</p>
+
+<pre><code>&lt;script&gt;
+var pagination = $('#paginate').PagerTom({
+        'target': '#pagination',
+        'itemtarget': 'div.item',
+        'perpage': 10,
+        'hash': 'page-'
+    });
+
+pagination.openPage(5);
+
+&lt;/script&gt;
+</code></pre>
+
+<p>The <code>target</code> and <code>itemtarget</code> options are really important because they are the
+things it's looking at paginating.  In this example you would have something on
+the page that looks a bit like this.  Not exactly like this though, that would
+be a bit pointless.</p>
+
+<pre><code>&lt;div id="pagination"&gt;
+    &lt;div class="item"&gt;Item 1&lt;/div&gt;
+    &lt;div class="item"&gt;Item 2&lt;/div&gt;
+    &lt;div class="item"&gt;Item 3&lt;/div&gt;
+    &lt;div class="item"&gt;Item 4&lt;/div&gt;
+    &lt;div class="item"&gt;Item 5&lt;/div&gt;
+    &lt;div class="item"&gt;Item 6&lt;/div&gt;
+    &lt;div class="item"&gt;Item 7&lt;/div&gt;
+    &lt;div class="item"&gt;Item 8&lt;/div&gt;
+    &lt;div class="item"&gt;Item 9&lt;/div&gt;
+    &lt;div class="item"&gt;Item 10&lt;/div&gt;
+    &lt;div class="item"&gt;Item 11&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h2>
+<a id="prerequisites" class="anchor" href="#prerequisites" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Prerequisites</h2>
+
+<p>JQuery is used to handle the DOM manipulation.  Basically because it supports
+most browsers.</p>
+
+<h2>
+<a id="lesscss" class="anchor" href="#lesscss" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>LESS/CSS</h2>
+
+<p>This uses a very Bootstrap-like design for the pagination elements.  However,
+you can easily overwrite these using the included CSS/LESS.</p>
+
+<h4>
+<a id="paginate" class="anchor" href="#paginate" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.paginate</code>
+</h4>
+
+<p>This is the class used for the pagination buttons.  It is a HTML <code>ul</code></p>
+
+<h4>
+<a id="paginate-li" class="anchor" href="#paginate-li" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.paginate li</code>
+</h4>
+
+<p>This is the class for a single pagination button.</p>
+
+<h4>
+<a id="paginate-liactive" class="anchor" href="#paginate-liactive" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.paginate li.active</code>
+</h4>
+
+<p>This is the current page.</p>
+
+<h4>
+<a id="paginate-lidisabled" class="anchor" href="#paginate-lidisabled" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.paginate li.disabled</code>
+</h4>
+
+<p>This is a button that can't be clicked.</p>
+
+<h2>
+<a id="options" class="anchor" href="#options" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Options</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>perpage</td>
+            <td>integer</td>
+            <td>10</td>
+            <td>The number of items that should appear on a page</td>
+        </tr>
+        <tr>
+            <td>page</td>
+            <td>integer</td>
+            <td>1</td>
+            <td>The page to load</td>
+        </tr>
+        <tr>
+            <td>target</td>
+            <td>string</td>
+            <td>'#pages'</td>
+            <td>
+                The overall target element that you want to paginate.  It will
+                show `perpage` child `itemtarget` elements per page.
+            </td>
+        </tr>
+        <tr>
+            <td>itemtarget</td>
+            <td>string</td>
+            <td>div</td>
+            <td>The selector for items within a page.</td>
+        </tr>
+        <tr>
+            <td>previous</td>
+            <td>boolean|string</td>
+            <td>"Previous"</td>
+            <td>
+                What do you want the text on the previous button to be.  If
+                this is `false`, no previous button will be shown.
+            </td>
+        </tr>
+        <tr>
+            <td>next</td>
+            <td>boolean|string</td>
+            <td>"Next"</td>
+            <td>
+                What do you want the text on the next button to be.  If
+                this is `false`, no next button will be shown.
+            </td>
+        </tr>
+        <tr>
+            <td>first</td>
+            <td>boolean|string</td>
+            <td>"First"</td>
+            <td>
+                What do you want the text on the first button to be.  If this
+                is `false`, no first button will be shown.  If it is `true` it
+                will show "1" as the first page.
+            </td>
+        </tr>
+        <tr>
+            <td>last</td>
+            <td>boolean|string</td>
+            <td>"Last"</td>
+            <td>
+                What do you want the text on the last button to be.  If this is
+                `false`, no last button will be shown. If it is `true` it
+                will show the number of the last page.
+            </td>
+        </tr>
+        <tr>
+            <td>otherpages</td>
+            <td>boolean|integer</td>
+            <td>false</td>
+            <td>
+                If an integer is passed to this value, it will only show that
+                number of pages either side of the current page.  So if this is
+                `1` and you are on page `5`, only pages `4`, `5`, and `6` will
+                be shown.
+            </td>
+        </tr>
+        <tr>
+            <td>pagecount</td>
+            <td>string|boolean</td>
+            <td>Page [page] of [pagecount].</td>
+            <td>
+                This allows you to specify whether the pagecount text is
+                displayed.  A `false` value will hide this.
+                <br><br>
+                The available options are:
+                <ul>
+                <li>[page] - the number of the current page being viewed.</li>
+                <li> [pagecount] - the total number of pages available.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>hash</td>
+            <td>boolean|string</td>
+            <td>false</td>
+            <td>
+                Do you want the hash of the window to change. If this is a
+                string, the window hash will change when clicking on a page.  
+                This is useful if you want to allow a page to pick up the
+                current page when refreshed.  The value will contain the
+                page number as a suffix, so if it is set as "page", the URL
+                will change to "#page5" if the fifth page is selected.
+            </td>
+        </tr>
+        <tr>
+            <td>animate</td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Do you want to fade in the next page?</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>
+<a id="api" class="anchor" href="#api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API</h2>
+
+<h3>
+<a id="openpagepage" class="anchor" href="#openpagepage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.openPage(page);</code>
+</h3>
+
+<p>Closes the current page and opens the page specified.  If the current page is
+the specified page, this will not fire.  If the specified page does not exist,
+the closest possible page will be opened (ie it will open the first or last
+page).</p>
+
+<h3>
+<a id="nextpage" class="anchor" href="#nextpage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.nextPage();</code>
+</h3>
+
+<p>Closes the current page and opens the next page.  If the current page is the
+last page, this will not fire.</p>
+
+<h3>
+<a id="previouspage" class="anchor" href="#previouspage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.previousPage();</code>
+</h3>
+
+<p>Closes the current page and opens the previous page.  If the current page is
+the first page, this will not fire.</p>
+
+<h3>
+<a id="firstpage" class="anchor" href="#firstpage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.firstPage();</code>
+</h3>
+
+<p>Closes the current page and opens the first page.  If the current page is the
+first page, this will not fire.</p>
+
+<h3>
+<a id="lastpage" class="anchor" href="#lastpage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.lastPage();</code>
+</h3>
+
+<p>Closes the current page and opens the last page.  If the current page is the
+last page, this will not fire.</p>
+
+<h3>
+<a id="pagecount" class="anchor" href="#pagecount" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.pageCount();</code>
+</h3>
+
+<p>Returns the number of pages.</p>
+
+<h3>
+<a id="pagecounttext" class="anchor" href="#pagecounttext" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.pageCountText();</code>
+</h3>
+
+<p>Returns the text showing the number of pages, based on the <code>pagecount</code> option.</p>
+
+<h3>
+<a id="showbuttons" class="anchor" href="#showbuttons" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.showButtons();</code>
+</h3>
+
+<p>Will redraw the buttons on the page.</p>
+
+<h3>
+<a id="resetbuttons" class="anchor" href="#resetbuttons" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.resetButtons();</code>
+</h3>
+
+<p>Will hide the buttons on the page.</p>
+
+<h3>
+<a id="hashvalue" class="anchor" href="#hashvalue" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.hashValue();</code>
+</h3>
+
+<p>Returns the page number that the window hash value is suggesting we are looking
+at.  This will return 0 if it doesn't recognise the number.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/paulhorner79/pager-tom">Pager Tom</a> is maintained by <a href="https://github.com/paulhorner79">paulhorner79</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
