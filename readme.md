@@ -3,6 +3,10 @@
 This is a Javascript pagination library.  There is no reason for the name
 except that it's a pun.
 
+> This is Ground Control to Pager Tom...
+
+** Please note that this is work in progress and not production ready **
+
 ## Quickstart
 
 To use this library, put a link to it at the bottom of your page, after your
