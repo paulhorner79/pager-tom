@@ -1,29 +1,34 @@
 # Pager Tom
 
+**Please note that this is work in progress and not production ready**
+
 This is a Javascript pagination library.  There is no reason for the name
 except that it's a pun.
 
 > This is Ground Control to Pager Tom...
 
-** Please note that this is work in progress and not production ready **
-
 ## Quickstart
 
-To use this library, put a link to it at the bottom of your page, after your
-JQuery library is loaded.  You can put it in the header if you want, but you
-probably shouldn't because that was what we did in the 90s.
+To use this library, put a link to `dist/pager-tom.min.js` at the bottom of
+your page, after your JQuery library is loaded.  You can put it in the header
+if you want, but you probably shouldn't because that was what we did 15 years
+ago when we didn't know any better and thought Javascript made your website
+bad.
 
-Then place an element on the page where you want the pagination buttons to
-appear.
+The `dist/pager-tom.min.css` file *should* be included in your header.  Feel
+free to edit this or use the less files included to produce your own version or
+merge it with your own file. Whatever.
+
+You then need to place an element on the page where you want the pagination
+buttons to appear.
 
 ```
 <div id="paginate"></div>
 ```
 
-Then add a script and invoke the paginate method on the specified element,
-including the bespoke options required.  
-
-You can call API methods on the pagination object.
+Once you've done this you need to add a script that invokes the pagination, and
+starts the magic.  You should include your options when initialising this.  You
+can then call API methods on the pagination object.
 
 ```
 <script>
@@ -62,8 +67,11 @@ be a bit pointless.
 
 ## Prerequisites
 
-JQuery is used to handle the DOM manipulation.  Basically because it supports
-most browsers.
+JQuery is used to handle the DOM manipulation.  Basically because we all know,
+it brings cross-browser compatibility, and because I'm lazy and it's less
+typing to write `$('#id')` than `document.getElementById('id')`.
+
+You can load any of the prerequisites by installing the npm packages.
 
 ## LESS/CSS
 
@@ -72,7 +80,7 @@ you can easily overwrite these using the included CSS/LESS.
 
 #### `.paginate`
 
-This is the class used for the pagination buttons.  It is a HTML `ul`
+This is the class used for the pagination buttons.  It's a HTML `ul`.
 
 #### `.paginate li`
 
@@ -86,7 +94,113 @@ This is the current page.
 
 This is a button that can't be clicked.
 
+#### Less Variables
+
+A number of variables are used for the colours and various sizing used.  These
+are configured in the `variables.less` file.
+
+<table>
+    <thead>
+        <tr>
+            <th>Variable Name</th>
+            <th>Default Value</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@pt-border-radius</td>
+            <td>3px;</td>
+            <td>The corner radius of the pagination boxes.</td>
+        </tr>
+        <tr>
+            <td>@pt-margin</td>
+            <td>2px;</td>
+            <td>The margin between each pagination box.</td>
+        </tr>
+        <tr>
+            <td>@pt-msg-colour</td>
+            <td style="background-color: #40a977; color: #fff;">#40a977;</td>
+            <td>The colour of the "Page x of y" text.</td>
+        </tr>
+        <tr>
+            <td>@pt-msg-size</td>
+            <td>.86em;</td>
+            <td>The size of the "Page x of y" text.</td>
+        </tr>
+        <tr>
+            <td>@pt-side-padding</td>
+            <td>6px;</td>
+            <td>The horizontal (left/right) padding of the pagination boxes.</td>
+        </tr>
+        <tr>
+            <td>@pt-top-padding</td>
+            <td>4px;</td>
+            <td>The vertical (bottom/top) padding of the pagination boxes.</td>
+        </tr>
+        <tr>
+            <td>@pt-line-height</td>
+            <td>1.5em;</td>
+            <td>The line height of the pagination boxes.</td>
+        </tr>
+        <tr>
+            <td>@pt-font-size</td>
+            <td>1.2em;</td>
+            <td>The font size of the pagination boxes.</td>
+        </tr>
+        <tr>
+            <td>@pt-default-colour</td>
+            <td style="background-color: #252525; color: #fff;">#252525;</td>
+            <td>The default font colour of the pagination boxes.</td>
+        </tr>
+        <tr>
+            <td>@pt-default-border-colour</td>
+            <td style="background-color: #b0b0b0; color: #252525;">#b0b0b0;</td>
+            <td>The default border colour of the pagination boxes.</td>
+        </tr>
+        <tr>
+            <td>@pt-default-bg-colour</td>
+            <td style="background-color: #efefef; color: #252525;">#efefef;</td>
+            <td>The default background colour of the pagination boxes.</td>
+        </tr>
+        <tr>
+            <td>@pt-active-colour</td>
+            <td style="background-color: #f6f6f6; color: #252525;">#f6f6f6;</td>
+            <td>The font colour of the current/active pagination box.</td>
+        </tr>
+        <tr>
+            <td>@pt-active-border-colour</td>
+            <td style="background-color: #358b62; color: #fff;">#358b62;</td>
+            <td>The border colour of the current/active pagination box.</td>
+        </tr>
+        <tr>
+            <td>@pt-active-bg-colour</td>
+            <td style="background-color: #40a977; color: #fff;">#40a977;</td>
+            <td>The background colour of the current/active pagination box.</td>
+        </tr>
+        <tr>
+            <td>@pt-disabled-colour</td>
+            <td style="background-color: #aaaaaa; color: #252525;">#aaaaaa;</td>
+            <td>The font colour of any disabled pagination boxes.</td>
+        </tr>
+        <tr>
+            <td>@pt-disabled-border-colour</td>
+            <td style="background-color: #b0b0b0; color: #252525;">#b0b0b0;</td>
+            <td>The border colour of any disabled pagination boxes.</td>
+        </tr>
+        <tr>
+            <td>@pt-disabled-bg-colour</td>
+            <td style="background-color: #dddddd; color: #252525;">#dddddd;</td>
+            <td>The background colour of any disabled pagination boxes.</td>
+        </tr>
+    </tbody>
+</table>
+
 ## Options
+
+When loading the PagerTom object, you can include a number of options.  Some of
+these you will almost certainly want to include, but for most of them the
+default values should be fine.
 
 <table>
     <thead>
@@ -113,7 +227,7 @@ This is a button that can't be clicked.
         <tr>
             <td>target</td>
             <td>string</td>
-            <td>'#pages'</td>
+            <td>"#pages"</td>
             <td>
                 The overall target element that you want to paginate.  It will
                 show `perpage` child `itemtarget` elements per page.
